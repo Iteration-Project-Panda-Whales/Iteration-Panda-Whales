@@ -19,7 +19,7 @@ const Login = () => {
     if(!username) setUsernameEmpty(true);
     if(!password) setPasswordEmpty(true);
     if(!isUsernameEmpty && !isPasswordEmpty){
- fetch(BACKEND_URL + '/signIn', {
+ fetch(BACKEND_URL + '/user/signIn', {
   method:'POST',
   headers: {
     'Content-Type' : 'application/json',
@@ -31,7 +31,7 @@ const Login = () => {
  .then(data => {
   console.log(data);
   if(data.username){
-    navigate('/')
+    navigate('/main')
   }
  })
  .catch(err => console.log('Login fetch /sigin: Error:', err));

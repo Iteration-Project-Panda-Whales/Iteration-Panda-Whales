@@ -23,13 +23,14 @@ UserController.createUser = async (req, res, next) => {
     }
 }
 
-UserController.verifyUser = async(req, res, nex) => {
+UserController.verifyUser = async(req, res, next) => {
     try{
-        const {username, password} = req.params;
+        const {username, password} = req.body;
         const user = await User.findOne({username: username});
-        if(!user) return res.status(404).json({error: 'User not in databse'});
+        if(!user) return res.status(404).json({error: 'User not in database'});
         else{
-            return res.status(200).json({something: 'do something'})
+            // Return the username in the response
+            return res.status(200).json({username: user.username});
         }
     } catch (err){
         return next({

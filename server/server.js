@@ -18,7 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use('/user', userRouter );
-userRouter.post('/', UserController.createUser);
+userRouter.post('/signUp', UserController.createUser);
+userRouter.post('/signIn', UserController.verifyUser);
+// userRouter.post('/', UserController.createUser);
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, "client", "dist")));
 
