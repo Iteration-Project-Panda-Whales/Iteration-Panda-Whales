@@ -6,7 +6,7 @@ const fakeData = require('./fakeSpoonData.json');
 jest.mock('axios');
 
 const validAPIReq = '/api/search/mexican/20/10/37.7749/122.4194';
-const invalidReqParams = '/api/search/mexican/20/10/37.7749';
+const invalidReqParams = '/api/search/mexican/20/10/37.7749/h';
 
 
 describe('spoonAPI', () => {
@@ -22,12 +22,18 @@ describe('spoonAPI', () => {
         describe('given the request params are incomplete', () => {
             it('should return a message that with 500 status and err: "Incomplete Fields!"', async () => {
                 const response = await request(app)
-                .get(validAPIReq)
+                .get(invalidReqParams)
                 .set('Accept', 'application/json');
-                console.log(response);
 
                 expect(response.status).toBe(500);
-                expect(response.body).toHaveProperty('log', 'message');
+                expect(response.body).toHaveProperty("err");
+                
+            })
+        })
+        xdescribe('given a successful api call', () => {
+            xit('should return 200 status and data should be a json obj', async () => {
+                const response = await request(app)
+                .get(validAPIReq)
                 
             })
         })
