@@ -43,9 +43,15 @@ app.get('/api/search/:cuisine/:distance/:budget/:latitude/:longitude', apiContro
   return res.status(200).json(restaurantData);
 });
 
-app.use('*', (req,res) => {
-  res.status(404).send('Not Found');
-});
+//added so that routes would work
+app.get('*', (req, res) => {
+  console.log('Request for index.html recieved');
+  res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"))
+})
+
+// app.use('*', (req,res) => {
+//   res.status(404).send('Not Found');
+// });
 
 app.use((err, req, res, next) => {
   const defaultObj = {
