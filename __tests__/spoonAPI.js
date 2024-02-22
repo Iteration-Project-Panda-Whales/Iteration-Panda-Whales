@@ -30,12 +30,5 @@ describe('spoonAPI', () => {
                 
             })
         })
-        xdescribe('given a successful api call', () => {
-            xit('should return 200 status and data should be a json obj', async () => {
-                const response = await request(app)
-                .get(validAPIReq)
-                
-            })
-        })
     })
 })
