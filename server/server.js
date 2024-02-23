@@ -23,7 +23,7 @@ app.use(cookieParser());
 // app.use('/user', userRouter );
 
 
-app.post('/signUp', UserController.createUser, UserController.loggedIn);
+app.post('/signUp', UserController.createUser, UserController.verifyUser);
 app.post('/', UserController.verifyUser, UserController.loggedIn);
 
 // userRouter.post('/signUp', UserController.createUser);

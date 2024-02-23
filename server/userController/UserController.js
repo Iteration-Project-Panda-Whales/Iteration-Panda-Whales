@@ -13,6 +13,7 @@ UserController.createUser = async (req, res, next) => {
   const { username, password } = req.body;
   try {
     const user = await User.create({ username, password });
+    res.cookie("SSID", user._id, { httpOnly: true });
     return res.status(200).json({ user: user });
   } catch (err) {
     return next({
